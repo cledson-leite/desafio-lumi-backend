@@ -1319,7 +1319,7 @@
     "@webassemblyjs/ast" "1.12.1"
     "@xtuc/long" "4.2.2"
 
-"@xmldom/xmldom@^0.8.10", "@xmldom/xmldom@^0.8.6":
+"@xmldom/xmldom@^0.8.6":
   version "0.8.10"
   resolved "https://registry.yarnpkg.com/@xmldom/xmldom/-/xmldom-0.8.10.tgz#a1337ca426aa61cef9fe15b5b28e340a72f6fa99"
   integrity sha512-2WALfTl4xo2SkGCYRt6rDTFfk9R1czmBvUQy12gK2KuRKIpWEhcbbzy8EZXtz/jkRqHX8bFEc6FC1HjX4TUWYw==
@@ -3962,13 +3962,6 @@ pdf2json@3.0.1:
   integrity sha512-1pNsakC8F+OuFS72U+ZI0u8J/voPYYDYHj/0B/7ywYUm3w0QurkDBy3pH35kzygjgmJJVHk2a9I6gBswFF8hQQ==
   dependencies:
     "@xmldom/xmldom" "^0.8.6"
-
-pdf2json@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/pdf2json/-/pdf2json-3.1.2.tgz#33d3e291640fbc4d3b6e22fffaf8235d76f67cf4"
-  integrity sha512-vHYIMvT5+ott2djw4e4A2o4LQtxkFoZd1N7po0FG82Hs1o3B/dhKLHtZDo4Y9+WnTkSEGcD0YaNHsD9X9tl/dg==
-  dependencies:
-    "@xmldom/xmldom" "^0.8.10"
 
 pdfreader@^3.0.2:
   version "3.0.2"

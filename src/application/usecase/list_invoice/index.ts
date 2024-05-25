@@ -7,6 +7,7 @@ export class ListInvoice implements IListInvoicesUseCase {
   constructor(private readonly repository: IInvoiceRepository) {}
   async execute(dto: ListInvoiceDTO): Promise<Result<Invoice[]>> {
     if (!dto) return Result.Failure(Result.ParamsNotFound);
+
     const client = await this.repository.findByClient(dto.client);
 
     if (!client?.client) return Result.Failure(Result.ClientNotFound);

@@ -1,73 +1,70 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Desafio Lumi Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+O objetivo será desenvolver um
+código que seja capaz de:
+* Extrair os dadosrelevantes dessasfaturas.
+* Organizar esses dados de maneira estruturada em um banco de dados PostgreSQL.
+* Apresentar esses dados em uma aplicação web, por meio de uma API.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### Detalhamento do desafio
 
-## Description
+Foi desenvolvido um extrator de dados para capturar os dados
+das faturas, em arquivo pdf, de energia elétrica recebida atraves de um endpoint (/file) e extrair as informações
+relevantes. Estas incluem:
+* Numero do cliente
+* Ano de referencia;
+* Mês de referencia
+* quantidade de kwh de Energia usada
+* Valor da Energia usada
+* quantidade de kwh de Energia SCEEE;
+* Valor da Energia SCEEE
+* quantidade de kwh de Energia Compensada
+* Valor da Energia Compensada
+* Valor da Iluminação Publica
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Tendo as faturas arquivadas no proprio servidor e as informações persistida em banco de dados Postgres, atraves do ORM Prisma, em um servidor separado.
 
-## Installation
+Foi desenvolvido também mais dois entpoint para:
+* Listar as faturas por numero de cliente e ano de referencia (/invoice/:cliente/:ano)
+* Download das faturas em pdf para maquina do usuario (/file/:cliente/:ano/:mes)
 
-```bash
-$ yarn install
-```
+## Stacks e arquitetura usada
 
-## Running the app
+Para essa desafio foi usado:
+* node 18
+* nestjs 10
+* prisma client 5
+* postgres 16
+* pdfreader 3
+* jest 29
+* faker-js 8
+* typescript 5
+ E como arquitetura foi suada arquitetura limpa ( clean arch ) em um sistema modular do propsio nestjs.
 
-```bash
-# development
-$ yarn run start
+ ### Lista de entipoints
+  * /file - Fornecer a fatura em pdf - POST - recebe arquivo pdf como body e sem retorno
+  * /file/client/ano/mes - Baixa a fatura em pdf - GET - fornecer o numero do cliente, ano com 4 digidos e mes nome abreviado, exemplo "JAN"
+  * /invoice/client/ano - Lista as informações das faturas contida no ano e cliente fornecido - GET - fornecer o numero do cliente, ano com 4 digidos - retorna um json com informações do cliente, ano e as faturas correspondente
 
-# watch mode
-$ yarn run start:dev
+  ### Produção
+  O mesmo esta hospedado em servidor proprio nesta url [Backend](https://desafio-lumi-backend.onrender.com)
 
-# production mode
-$ yarn run start:prod
-```
+  ## Testes
+  ```
+  git clone https://github.com/cledson-leite/desafio-lumi-backend.git
 
-## Test
+  cd desafio-lumi-backend
+  yarn ou npm i ou npm install
+  yarn test ou npm rum test
 
-```bash
-# unit tests
-$ yarn run test
+  ```
+  ## Execução local
+  ```
+  git clone https://github.com/cledson-leite/desafio-lumi-backend.git
 
-# e2e tests
-$ yarn run test:e2e
+  cd desafio-lumi-backend
+  yarn ou npm i ou npm install
+  yarn dev ou npm rum dev
 
-# test coverage
-$ yarn run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+  ```
+  neste caso deve-se usar a url base http://localhost:3000
