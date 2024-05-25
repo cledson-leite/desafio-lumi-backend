@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
+}
+
+// prisma/schema.prisma
+datasource db {
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+  // uncomment next line if you use Prisma <5.10
+  // directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+model Client {
+  id       Int            @id @default(autoincrement())
+  client   String
+  invoices YearInvoices[]
+}
+
+model YearInvoices {
+  id       Int        @id @default(autoincrement())
+  client   Client @relation(fields: [clientId], references: [id])
+  clientId Int
+  yearRef String
+  invoices Invoices[]
+}
+
+model Invoices {
+  id           Int     @id @default(autoincrement())
+  year   YearInvoices  @relation(fields: [yearId], references: [id])
+  yearId       Int
+  monthRef     Int
+  quantEletric Int?
+  valueEletric Decimal?
+  quantSCEEE   Int?
+  valueSCEEE   Decimal?
+  quantPlywood Int?
+  valuePlywood Decimal?
+  valuePublic  Decimal?
+}
