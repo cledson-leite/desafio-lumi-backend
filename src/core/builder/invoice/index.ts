@@ -32,7 +32,7 @@ export class InvoiceBuilder {
 
   valueEletric(value: number): this {
     if (!value) throw new InvalidParams('Value Eletric not found');
-    this.invoice.valueEletric = value;
+    this.invoice.valueEletric = Number(value.toFixed(2));
     return this;
   }
 
@@ -42,7 +42,7 @@ export class InvoiceBuilder {
   }
 
   valueSCEEE(value: number): this {
-    this.invoice.valueSCEEE = value;
+    this.invoice.valueSCEEE = value ? Number(value.toFixed(2)) : 0;
     return this;
   }
 
@@ -52,13 +52,13 @@ export class InvoiceBuilder {
   }
 
   valuePlywood(value: number): this {
-    this.invoice.valuePlywood = value;
+    this.invoice.valuePlywood = value ? Number(value.toFixed(2)) : 0;
     return this;
   }
 
   valuePublic(value: number): this {
     if (!value) throw new InvalidParams('Value Public not found');
-    this.invoice.valuePublic = value;
+    this.invoice.valuePublic = Number(value.toFixed(2));
     return this;
   }
 
